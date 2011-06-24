@@ -26,7 +26,7 @@ namespace :sunspot do
 
   desc 'Reindex all solr models'
   task :reindex => :environment do
-    all_files = Dir.glob(File.join(RAILS_ROOT, 'app', 'models', '*.rb'))
+    all_files = Dir.glob(File.join(RAILS_ROOT, 'app', 'models', '**', '*.rb'))
     all_models = all_files.map { |path| File.basename(path, '.rb').camelize.constantize }
     sunspot_models = all_models.select { |m| m < ActiveRecord::Base and m.searchable? }
 
